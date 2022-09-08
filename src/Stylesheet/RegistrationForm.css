@@ -1,0 +1,79 @@
+.MainContainer{
+    background: rgb(236, 243, 222);
+    width: 500px;
+    height: 650px;
+  }
+
+  .HeaderContainer{
+    background: rgb(137, 163, 85);
+    height:30px;
+    color: white;
+    align-content: center;
+  }
+  .InputWhite{
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 50px;
+    width:250px;
+  }
+  .InputWhiteUrl{
+    margin-top: 20px;
+    margin-left: 8px;
+    margin-right: 50px;
+    width:250px;
+  }
+  .InputYellowEmail{
+    margin-top: 20px;
+    background: yellow;
+    margin-left: 53px;
+    width:250px;
+  }
+  .InputYellowName{
+    margin-top: 20px;
+    background: yellow;
+    margin-left: 48px;
+    width:250px;
+  }
+  .LabelSetup{
+    margin-left: 50px;
+  }
+  .AboutlabelSetup{
+    margin-left: 50px;
+    margin-top: 40px;
+  }
+  .TextAreaSetup{
+    width: 380px;
+    height: 150px;
+    padding: 10px;
+    margin-left: 50px;
+  }
+  .SubmitButton{
+    border-radius: 10px;
+    background: rgb(137, 163, 85);
+    width: 40px;
+    height: 20px;
+    margin-top: 15px;
+    color: white;
+  }
+  .Form {
+    align: left;
+  }
+  .SelectOption {
+    margin-left: 20px; 
+    margin-top:20px;
+  }
+  .LabelSetupCheckBox{
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .LabelSetupText{
+    margin-left: 50px;
+    font-size: 10px;
+  }
+  .LabelSetupWithMargin{
+    font-size: 14px;
+  }
+  .BottomDiv{
+    margin-top: 40px;
+  }
