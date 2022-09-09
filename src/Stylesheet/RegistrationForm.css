@@ -11,25 +11,25 @@
     align-content: center;
   }
   .InputWhite{
-    margin-top: 20px;
+    margin-top: 15px;
     margin-left: 40px;
     margin-right: 50px;
     width:250px;
   }
   .InputWhiteUrl{
-    margin-top: 20px;
+    margin-top: 15px;
     margin-left: 8px;
     margin-right: 50px;
     width:250px;
   }
   .InputYellowEmail{
-    margin-top: 20px;
+    margin-top: 15px;
     background: yellow;
     margin-left: 53px;
     width:250px;
   }
   .InputYellowName{
-    margin-top: 20px;
+    margin-top: 15px;
     background: yellow;
     margin-left: 48px;
     width:250px;
@@ -55,12 +55,10 @@
     margin-top: 15px;
     color: white;
   }
-  .Form {
-    align: left;
-  }
+
   .SelectOption {
     margin-left: 20px; 
-    margin-top:20px;
+    margin-top:15px;
   }
   .LabelSetupCheckBox{
     margin-left: 5px;
@@ -76,4 +74,24 @@
   }
   .BottomDiv{
     margin-top: 40px;
+  }
+  .CompActive {
+    display: block;
+  }
+  .CompInactive {
+    display: none;
+  }
+  .ErrorLogin{
+    margin-left: 142px;
+    margin-right: 10px;
+    color:red;
+    height: 15px;
+    font-size: 12px;
+  }
+  .ErrorAboutMe {
+    margin-left: 50px;
+    margin-right: 10px;
+    color:red;
+    height: 15px;
+    font-size: 12px;
   }
