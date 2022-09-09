@@ -5,7 +5,6 @@ class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.isInputsValid = true
-    this.checkboxCliked = false
     this.state = {
       loginId: {
         value:'',
@@ -31,7 +30,8 @@ class RegistrationForm extends Component {
         value:'',
         error:''
       },
-      receiveNotification: true
+      receiveNotification: false,
+      showCheckboxError: false,
     }
   }
   checkEmailValidation(email) {
@@ -51,12 +51,10 @@ class RegistrationForm extends Component {
     this.checkTimeZone()
     this.checkUrl()
     this.checkAboutMe()
-   /* if (!this.checkboxCliked) {
-      this.setState({
-        receiveNotification: false
-      })
-    }
-    this.isInputsValid = this.state.receiveNotification */
+    this.setState({
+      showCheckboxError: !this.state.receiveNotification
+    })
+    this.isInputsValid = this.state.receiveNotification
     console.log(!this.isInputsValid)
     if (!this.isInputsValid) {
       e.preventDefault()
@@ -196,9 +194,9 @@ class RegistrationForm extends Component {
     })
   }
   receiveNotificationCheckBox = (e) => {
-    this.checkboxCliked = true
     this.setState({
-      receiveNotification: e.target.checked
+      receiveNotification: e.target.checked,
+      showCheckboxError: false
     })
   }
   render() {
@@ -258,7 +256,7 @@ class RegistrationForm extends Component {
           <label className="LabelSetupCheckBox">
             Receive notification of comment.
           </label><br></br>
-          {(!this.state.receiveNotification) && <div className='ErrorAboutMe'>Please select checkbox for notification</div>}
+          {(this.state.showCheckboxError) && <div className='ErrorAboutMe'>Please select checkbox for notification</div>}
           <label className="LabelSetupText">
             You will be sent an email when someone posts comments to your blog or Album.
           </label><br></br>
@@ -278,16 +276,3 @@ class RegistrationForm extends Component {
 }
 
 export default RegistrationForm
-
-
-/*
-	checkUrlValidation(url) {
-    const regex = /^(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)((.)*)?(\?(.)*)?/;
-    return regex.test(url);
-  }
-
-	checkEmailValidation(email) {
-    const regex = /^(([^<>()[\]\.,;:\s@]+(\.[^<>()[\]\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regex.test(email);
-  }
-*/
