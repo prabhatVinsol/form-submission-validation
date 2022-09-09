@@ -34,8 +34,17 @@ class RegistrationForm extends Component {
       receiveNotification: true
     }
   }
+  checkEmailValidation(email) {
+    const regex = (/^(([^<>()[\]\.,;:\s@]+(\.[^<>()[\]\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    return regex.test(email);
+  }
+  checkUrlValidation(url) {
+    const regex = (/^(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)((.)*)?(\?(.)*)?/)
+    return regex.test(url);
+  }
   handleFormSubmission = (e) => {
     console.log('On submit called')
+    this.isInputsValid = true
     this.checkLogin()
     this.checkEmail()
     this.checkName()
@@ -48,6 +57,7 @@ class RegistrationForm extends Component {
       })
     }
     this.isInputsValid = this.state.receiveNotification */
+    console.log(!this.isInputsValid)
     if (!this.isInputsValid) {
       e.preventDefault()
     }
@@ -65,7 +75,23 @@ class RegistrationForm extends Component {
     } 
   }
   checkEmail = () => {
-    
+    if (this.state.email.value.trim().length == 0) {
+      this.setState({
+        email: {
+          value: this.state.email.value,
+          error: 'Email field is empty.'
+        }
+      })
+      this.isInputsValid = false
+    } else if (!this.checkEmailValidation(this.state.email.value)) {
+      this.setState({
+        email: {
+          value: this.state.email.value,
+          error: 'Email is invalid.'
+        }
+      })
+      this.isInputsValid = false
+    }
   }
   checkName = () => {
     if (this.state.name.value.trim().length == 0) {
@@ -90,7 +116,23 @@ class RegistrationForm extends Component {
     }
   }
   checkUrl = () => {
-    
+    if (this.state.url.value.trim().length == 0) {
+      this.setState({
+        url: {
+          value: this.state.url.value,
+          error: 'Url field is empty.'
+        }
+      })
+      this.isInputsValid = false
+    } else if (!this.checkUrlValidation(this.state.url.value)) {
+      this.setState({
+        url: {
+          value: this.state.url.value,
+          error: 'Url is invalid.'
+        }
+      })
+      this.isInputsValid = false
+    }
   }
   checkAboutMe = () => {
     const aboutMeLength = this.state.aboutMe.value.trim().length
@@ -175,7 +217,7 @@ class RegistrationForm extends Component {
           {(this.state.loginId.error.length != 0) && <div className='ErrorLogin'>{this.state.loginId.error}</div>}
           <label className="LabelSetup">Email</label>
           <input className="InputYellowEmail" 
-            type="email" 
+            type="text" 
             value={this.state.email.value}
             onChange={this.emailHandler}>
           </input><br></br>
@@ -197,7 +239,7 @@ class RegistrationForm extends Component {
           {(this.state.timezone.error.length != 0) && <div className='ErrorLogin'>{this.state.timezone.error}</div>}
           <label className="LabelSetup">Home Page</label>
           <input className="InputWhiteUrl" 
-            type="url" 
+            type="text" 
             value={this.state.url.value}
             onChange={this.urlHandler}>
           </input><br></br>
@@ -236,3 +278,16 @@ class RegistrationForm extends Component {
 }
 
 export default RegistrationForm
+
+
+/*
+	checkUrlValidation(url) {
+    const regex = /^(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)((.)*)?(\?(.)*)?/;
+    return regex.test(url);
+  }
+
+	checkEmailValidation(email) {
+    const regex = /^(([^<>()[\]\.,;:\s@]+(\.[^<>()[\]\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(email);
+  }
+*/
