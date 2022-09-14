@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../Stylesheet/RegistrationForm.css'
+import '../stylesheet/RegistrationForm.css'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -43,7 +43,6 @@ class RegistrationForm extends Component {
     return regex.test(url);
   }
   handleFormSubmission = (e) => {
-    console.log('On submit called')
     this.isInputsValid = true
     this.checkLogin()
     this.checkEmail()
@@ -55,7 +54,6 @@ class RegistrationForm extends Component {
       showCheckboxError: !this.state.receiveNotification
     })
     this.isInputsValid = this.state.receiveNotification
-    console.log(!this.isInputsValid)
     if (!this.isInputsValid) {
       e.preventDefault()
     }
@@ -177,7 +175,6 @@ class RegistrationForm extends Component {
     })
   }
   timezoneHandler = (e) => {
-    console.log(e.target.value)
     this.setState({
       timezone: {
         value: e.target.value,
