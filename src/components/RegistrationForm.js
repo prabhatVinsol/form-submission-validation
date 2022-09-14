@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../stylesheet/RegistrationForm.css'
+import { isEmailValid, isUrlValid } from '../utilities/Helper'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -34,13 +35,8 @@ class RegistrationForm extends Component {
       showCheckboxError: false,
     }
   }
-  checkEmailValidation(email) {
-    const regex = (/^(([^<>()[\]\.,;:\s@]+(\.[^<>()[\]\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-    return regex.test(email);
-  }
   checkUrlValidation(url) {
-    const regex = (/^(http[s]?:\/\/(www\.)?|ftp:\/\/(www\.)?|www\.){1}([0-9A-Za-z-\.@:%_\+~#=]+)+((\.[a-zA-Z]{2,3})+)((.)*)?(\?(.)*)?/)
-    return regex.test(url);
+    
   }
   handleFormSubmission = (e) => {
     this.isInputsValid = true
@@ -79,7 +75,7 @@ class RegistrationForm extends Component {
         }
       })
       this.isInputsValid = false
-    } else if (!this.checkEmailValidation(this.state.email.value)) {
+    } else if (!isEmailValid(this.state.email.value)) {
       this.setState({
         email: {
           value: this.state.email.value,
@@ -120,7 +116,7 @@ class RegistrationForm extends Component {
         }
       })
       this.isInputsValid = false
-    } else if (!this.checkUrlValidation(this.state.url.value)) {
+    } else if (!isUrlValid(this.state.url.value)) {
       this.setState({
         url: {
           value: this.state.url.value,
