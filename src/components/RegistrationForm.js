@@ -22,12 +22,19 @@ class RegistrationForm extends Component {
       value:'', 
       error:''};
   }
+  setStatesFor(field, value, error) {
+    this.setState({
+      [field] : {
+        value: value,
+        error: error
+      }
+    })
+  }
   handleFormSubmission = (e) => {
     this.isInputsValid = true
     this.checkLogin()
     this.checkEmail()
     this.checkName()
-    this.checkTimeZone()
     this.checkUrl()
     this.checkAboutMe()
     this.setState({
@@ -41,134 +48,58 @@ class RegistrationForm extends Component {
   }
   checkLogin = () => {
     if (this.state.loginId.value.trim().length == 0) {
-      this.setState({
-        loginId: {
-          value: '',
-          error: 'Login field is empty.'
-        }
-      })
+      this.setStatesFor('loginId', '', 'Login field is empty.')
       this.isInputsValid = false
     } 
   }
   checkEmail = () => {
     if (this.state.email.value.trim().length == 0) {
-      this.setState({
-        email: {
-          value: this.state.email.value,
-          error: 'Email field is empty.'
-        }
-      })
+      this.setStatesFor('email', this.state.email.value, 'Email field is empty.')
       this.isInputsValid = false
     } else if (!isEmailValid(this.state.email.value)) {
-      this.setState({
-        email: {
-          value: this.state.email.value,
-          error: 'Email is invalid.'
-        }
-      })
+      this.setStatesFor('email', this.state.email.value, 'Email is invalid.')
       this.isInputsValid = false
     }
   }
   checkName = () => {
     if (this.state.name.value.trim().length == 0) {
-      this.setState({
-        name: {
-          value: '',
-          error: 'Username field is empty.'
-        }
-      })
+      this.setStatesFor('name', '', 'Username field is empty.')
       this.isInputsValid = false
     } 
   }
-  checkTimeZone = () => {
-    if (this.state.timezone.value == '') {
-      this.setState({
-        timezone: {
-          value: this.state.timezone.value,
-          error: 'Please select a timezone.'
-        }
-      })
-      this.isInputsValid = false
-    }
-  }
   checkUrl = () => {
     if (this.state.url.value.trim().length == 0) {
-      this.setState({
-        url: {
-          value: this.state.url.value,
-          error: 'Url field is empty.'
-        }
-      })
+      this.setStatesFor('url', this.state.url.value, 'Url field is empty.')
       this.isInputsValid = false
     } else if (!isUrlValid(this.state.url.value)) {
-      this.setState({
-        url: {
-          value: this.state.url.value,
-          error: 'Url is invalid.'
-        }
-      })
+      this.setStatesFor('url', this.state.url.value, 'Url is invalid.')
       this.isInputsValid = false
     }
   }
   checkAboutMe = () => {
     const aboutMeLength = this.state.aboutMe.value.trim().length
     if(aboutMeLength < 50) {
-      this.setState({
-        aboutMe: {
-          value: this.state.aboutMe.value,
-          error: (aboutMeLength == 0) ? 'About me is empty.' : 'About me is less than 50 characters.'
-        }
-      })
+      this.setStatesFor('aboutMe', this.state.aboutMe.value, (aboutMeLength == 0) ? 'About me is empty.' : 'About me is less than 50 characters.')
       this.isInputsValid = false
     }
   }
   loginIdHandler = (e) => {
-    this.setState({
-      loginId: {
-        value: e.target.value,
-        error: ''
-      }
-    })
+    this.setStatesFor('loginId', e.target.value, '')
   }
   emailHandler = (e) => {
-    this.setState({
-      email: {
-        value: e.target.value,
-        error: ''
-      }
-    })
+    this.setStatesFor('email', e.target.value, '')
   }
   nameHandler = (e) => {
-    this.setState({
-      name: {
-        value: e.target.value,
-        error: ''
-      }
-    })
+    this.setStatesFor('name', e.target.value, '')
   }
   urlHandler = (e) => {
-    this.setState({
-      url: {
-        value: e.target.value,
-        error: ''
-      }
-    })
+    this.setStatesFor('url', e.target.value, '')
   }
   timezoneHandler = (e) => {
-    this.setState({
-      timezone: {
-        value: e.target.value,
-        error: ''
-      }
-    })
+    this.setStatesFor('timezone', e.target.value, '')
   }
   aboutMeHandler = (e) => {
-    this.setState({
-      aboutMe: {
-        value: e.target.value,
-        error: ''
-      }
-    })
+    this.setStatesFor('aboutMe', e.target.value, '')
   }
   receiveNotificationCheckBox = (e) => {
     this.setState({
