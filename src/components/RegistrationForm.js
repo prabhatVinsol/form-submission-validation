@@ -7,36 +7,20 @@ class RegistrationForm extends Component {
     super(props)
     this.isInputsValid = true
     this.state = {
-      loginId: {
-        value:'',
-        error:''
-      },
-      email: {
-        value:'',
-        error:''
-      },
-      name: {
-        value:'',
-        error:''
-      },
-      url: {
-        value:'',
-        error:''
-      },
-      timezone: {
-        value:'SelectTimezone',
-        error:''
-      },
-      aboutMe: {
-        value:'',
-        error:''
-      },
+      loginId: this.getValueErrorObject(),
+      email: this.getValueErrorObject(),
+      name:this.getValueErrorObject(),
+      url: this.getValueErrorObject(),
+      timezone: this.getValueErrorObject(),
+      aboutMe:this.getValueErrorObject(),
       receiveNotification: false,
       showCheckboxError: false,
     }
   }
-  checkUrlValidation(url) {
-    
+  getValueErrorObject(field) {
+    return {
+      value:'', 
+      error:''};
   }
   handleFormSubmission = (e) => {
     this.isInputsValid = true
@@ -97,7 +81,7 @@ class RegistrationForm extends Component {
     } 
   }
   checkTimeZone = () => {
-    if (this.state.timezone.value == 'SelectTimezone') {
+    if (this.state.timezone.value == '') {
       this.setState({
         timezone: {
           value: this.state.timezone.value,
@@ -221,9 +205,8 @@ class RegistrationForm extends Component {
           </input><br></br>
           {(this.state.name.error.length != 0) && <div className='ErrorLogin'>{this.state.name.error}</div>}
           <label className="LabelSetup">Timezone</label>
-          <select id="timezone" className='SelectOption' defaultValue={this.state.timezone.value} onChange={this.timezoneHandler}>
-            <option value="SelectTimezone">Select a timezone</option>
-            <option value="gmt">GMT</option>
+          <select id="timezone" className='SelectOption' onChange={this.timezoneHandler}>
+            <option value="gmt" selected>GMT</option>
             <option value="pst">PST</option>
             <option value="ist">IST</option>
           </select><br></br>
